@@ -1,59 +1,59 @@
-# Cross-Platform Video Device Control Tool
+# 跨平台视频设备控制工具
 
-A cross-platform video device control tool compatible with v4l2-ctl, supporting Windows, Linux, and macOS.
+一个兼容v4l2-ctl的跨平台视频设备控制工具，支持Windows、Linux和macOS。
 
-## 🌟 Features
+## 🌟 功能
 
-- ✅ **Cross-Platform Support**: Windows, Linux, macOS
-- ✅ **Device Enumeration**: List all available video devices
-- ✅ **Format Query**: Display supported video formats, resolutions, frame rates
-- ✅ **Parameter Control**: View and set device control parameters (brightness, contrast, etc.)
-- ✅ **v4l2-ctl Compatible**: Command-line interface compatible with v4l2-ctl
-- ✅ **Multiple Backends**: DirectShow (Windows), V4L2 (Linux), AVFoundation (macOS), OpenCV (fallback)
+- ✅ **跨平台支持**: Windows, Linux, macOS
+- ✅ **设备枚举**: 列出所有可用的视频设备
+- ✅ **格式查询**: 显示支持的视频格式、分辨率、帧率
+- ✅ **参数控制**: 查看和设置设备控制参数（亮度、对比度等）
+- ✅ **v4l2-ctl 兼容**: 命令行界面兼容v4l2-ctl
+- ✅ **多后端支持**: DirectShow (Windows), V4L2 (Linux), AVFoundation (macOS), OpenCV (备用)
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-### Installation
+### 安装
 
 ```bash
-# Install from source
+# 从源码安装
 git clone https://github.com/yaoian/cross-platform-camera-control.git
 cd cross-platform-camera-control
 pip install -r requirements.txt
 
-# Or install as package
+# 或者作为包安装
 pip install cross-platform-camera-control
 ```
 
-### Basic Usage
+### 基本用法
 
 ```bash
-# Show help
+# 显示帮助
 python v4l2_ctl_cross.py -h
 
-# List all video devices
+# 列出所有视频设备
 python v4l2_ctl_cross.py --list-devices
 
-# Show supported formats
+# 显示支持的格式
 python v4l2_ctl_cross.py -d /dev/video0 --list-formats-ext
 
-# Show device controls
+# 显示设备控件
 python v4l2_ctl_cross.py -d /dev/video0 -L
 
-# Set control parameters
+# 设置控制参数
 python v4l2_ctl_cross.py -d /dev/video0 -c brightness=50
 python v4l2_ctl_cross.py -d /dev/video0 -c brightness=50,contrast=75
 ```
 
-## 📋 Example Output
+## 📋 示例输出
 
-**Device List:**
+**设备列表:**
 ```
 USB Camera: (USB\VID_1BCF&PID_2C9A&MI_00\6&33F8E1A6&0&0000):
         /dev/video0
 ```
 
-**Control Parameters:**
+**控制参数:**
 ```
 User Controls
 
@@ -62,20 +62,20 @@ contrast: 50 (range: 0-100) - Contrast
 saturation: 50 (range: 0-100) - Saturation
 ```
 
-## 🏗️ Architecture
+## 🏗️ 架构
 
 ```
-VideoDeviceController (Abstract Base Class)
-├── WindowsVideoController (Windows Implementation)
-│   ├── DirectShow API (Primary)
-│   └── OpenCV (Fallback)
-├── LinuxVideoController (Linux Implementation)
+VideoDeviceController (抽象基类)
+├── WindowsVideoController (Windows 实现)
+│   ├── DirectShow API (主要)
+│   └── OpenCV (备用)
+├── LinuxVideoController (Linux 实现)
 │   └── V4L2 API
-└── MacOSVideoController (macOS Implementation)
+└── MacOSVideoController (macOS 实现)
     └── AVFoundation API
 ```
 
-## 📦 Platform-Specific Dependencies
+## 📦 平台特定依赖
 
 ### Windows
 ```bash
@@ -85,7 +85,7 @@ pip install pywin32 opencv-python
 ### Linux
 ```bash
 pip install v4l2-python opencv-python
-# or
+# 或
 sudo apt-get install python3-v4l2
 ```
 
@@ -94,79 +94,79 @@ sudo apt-get install python3-v4l2
 pip install pyobjc opencv-python pyobjc-framework-AVFoundation
 ```
 
-## 📁 Project Structure
+## 📁 项目结构
 
 ```
-├── video_device_controller.py  # Abstract base class and interfaces
-├── windows_directshow.py       # Windows DirectShow implementation
-├── opencv_fallback.py          # OpenCV fallback implementation
-├── v4l2_ctl_cross.py          # Command-line interface
-├── setup.py                   # Package configuration
-├── requirements.txt           # Dependencies
-└── README.md                  # Project documentation
+├── video_device_controller.py  # 抽象基类和接口
+├── windows_directshow.py       # Windows DirectShow 实现
+├── opencv_fallback.py          # OpenCV 备用实现
+├── v4l2_ctl_cross.py          # 命令行界面
+├── setup.py                   # 包配置
+├── requirements.txt           # 依赖
+└── README.md                  # 项目文档
 ```
 
-## 🔧 Development Status
+## 🔧 开发状态
 
-### ✅ Completed Features
-- [x] Project architecture design
-- [x] Windows platform basic implementation
-- [x] OpenCV fallback solution
-- [x] Command-line interface
-- [x] Device enumeration
-- [x] Basic format query
-- [x] Basic parameter control
+### ✅ 已完成功能
+- [x] 项目架构设计
+- [x] Windows 平台基本实现
+- [x] OpenCV 备用方案
+- [x] 命令行界面
+- [x] 设备枚举
+- [x] 基本格式查询
+- [x] 基本参数控制
 
-### 🚧 In Progress
-- [ ] Complete DirectShow implementation
-- [ ] Linux V4L2 implementation
-- [ ] macOS AVFoundation implementation
-- [ ] Advanced parameter control
-- [ ] Error handling optimization
-- [ ] Unit tests
-- [ ] Performance optimization
+### 🚧 进行中
+- [ ] 完善 DirectShow 实现
+- [ ] Linux V4L2 实现
+- [ ] macOS AVFoundation 实现
+- [ ] 高级参数控制
+- [ ] 错误处理优化
+- [ ] 单元测试
+- [ ] 性能优化
 
-## 📊 Comparison with Original C++ Project
+## 📊 与原始 C++ 项目对比
 
-| Feature | C++ v4w2-ctl | Python Version |
-|---------|--------------|----------------|
-| Platform Support | Windows only | Windows/Linux/macOS |
-| Device Enumeration | ✅ | ✅ |
-| Format Query | ✅ | ✅ (Basic) |
-| Parameter Control | ✅ | ✅ (Basic) |
-| DirectShow | ✅ Complete | 🔄 In Development |
-| V4L2 Support | ❌ | 🔄 Planned |
-| Installation | Requires compilation | pip install |
+| 功能 | C++ v4w2-ctl | Python 版本 |
+|---|---|---|
+| 平台支持 | 仅 Windows | Windows/Linux/macOS |
+| 设备枚举 | ✅ | ✅ |
+| 格式查询 | ✅ | ✅ (基本) |
+| 参数控制 | ✅ | ✅ (基本) |
+| DirectShow | ✅ 完成 | 🔄 开发中 |
+| V4L2 支持 | ❌ | 🔄 计划中 |
+| 安装 | 需要编译 | pip install |
 
-## 🛠️ Building Original C++ Project
+## 🛠️ 构建原始 C++ 项目
 
 ```bash
-# Using MinGW
+# 使用 MinGW
 g++ -o v4w2-ctl.exe v4w2-ctl.cpp ClsDirectShow.cpp -lole32 -loleaut32 -lstrmiids
 
-# Test
+# 测试
 ./v4w2-ctl.exe -h
 ./v4w2-ctl.exe --list-devices
 ```
 
-## 🤝 Contributing
+## 🤝 贡献
 
-1. Fork the project
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+1. Fork 项目
+2. 创建功能分支
+3. 提交你的修改
+4. 推送到分支
+5. 打开一个 Pull Request
 
-## 📄 License
+## 📄 许可证
 
-MIT License - Same as the original project
+MIT 许可证 - 与原始项目相同
 
-## 🙏 Acknowledgments
+## 🙏 致谢
 
-- Original project author: hry2566
-- OpenCV community
-- Python community library maintainers
+- 原始项目作者: hry2566
+- OpenCV 社区
+- Python 社区库维护者
 
-## 📞 Support
+## 📞 支持
 
-If you encounter any issues or have questions, please [open an issue](https://github.com/yaoian/cross-platform-camera-control/issues) on GitHub.
+如果你遇到任何问题或有任何疑问，请在 GitHub 上 [提出一个 issue](https://github.com/yaoian/cross-platform-camera-control/issues)。
